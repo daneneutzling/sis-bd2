@@ -15,7 +15,7 @@
     <div class="content">
         <h1>Biblioteca</h1>
 
-        <h2>Livros</h2>
+        <h2>Autores</h2>
         <?php
         require 'mysql_server.php';
 
@@ -23,10 +23,8 @@
 
         $id = 'id';
         $nome = 'nome';
-        $edicao = 'edicao';
-        $data_edicao = 'data_edicao';
-        $categoria = 'categoria';
-        $id_autor = 'id_autor';
+        $nascimento = 'nascimento';
+        $nacionalidade = 'nacionalidade';
 
         /*TODO-1: Adicione uma variavel para cada coluna */
 
@@ -34,12 +32,10 @@
         $sql =
             'SELECT ' . $id .
             '     , ' . $nome .
-            '     , ' . $edicao .
-            '     , ' . $data_edicao.
-            '     , ' . $categoria.
-            '     , ' . $id_autor.
+            '     , ' . $nascimento .
+            '     , ' . $nacionalidade .
             /*TODO-2: Adicione cada variavel a consulta abaixo */
-            '  FROM livro';
+            '  FROM autor';
 
 
         $resultado = mysqli_query($conexao, $sql);
@@ -55,10 +51,8 @@
             '        <th>' . 'ID' . '</th>' .
             '        <th>' . 'Nome' . '</th>' .
             /* TODO-3: Adicione as variaveis ao cabeçalho da tabela */
-            '        <th>' . 'Edição' . '</th>' .
-            '        <th>' . 'Data da edição' . '</th>' .
-            '        <th>' . 'Categoria' . '</th>' .
-            '        <th>' . 'ID do autor' . '</th>' .
+            '        <th>' . 'Nascimento' . '</th>' .
+            '        <th>' . 'Nacionalidade' . '</th>' .
             '    </tr>';
 
         echo $cabecalho;
@@ -71,10 +65,8 @@
                 echo '<td>' . $registro[$id] . '</td>' .
                     '<td>' . $registro[$nome] . '</td>' .
                     /* TODO-4: Adicione a tabela os novos registros. */
-                    '<td>' . $registro[$edicao] . '</td>'.
-                    '<td>' . $registro[$data_edicao] . '</td>'.
-                    '<td>' . $registro[$categoria] . '</td>'.
-                    '<td>' . $registro[$id_autor] . '</td>';
+                    '<td>' . $registro[$nascimento] . '</td>' . 
+                    '<td>' . $registro[$nacionalidade] . '</td>';
                 echo '</tr>';
             }
             echo '</table>';

@@ -15,31 +15,29 @@
     <div class="content">
         <h1>Biblioteca</h1>
 
-        <h2>Livros</h2>
+        <h2>Leituras</h2>
         <?php
         require 'mysql_server.php';
 
         $conexao = RetornaConexao();
 
-        $id = 'id';
-        $nome = 'nome';
-        $edicao = 'edicao';
-        $data_edicao = 'data_edicao';
-        $categoria = 'categoria';
-        $id_autor = 'id_autor';
+        $leitor = 'leitor';
+        $livro = 'livro';
+        $data_inicio = 'data_inicio';
+        $data_fim = 'data_fim';
+        $classificacao = 'classificacao';
 
         /*TODO-1: Adicione uma variavel para cada coluna */
 
 
         $sql =
-            'SELECT ' . $id .
-            '     , ' . $nome .
-            '     , ' . $edicao .
-            '     , ' . $data_edicao.
-            '     , ' . $categoria.
-            '     , ' . $id_autor.
+            'SELECT ' . $leitor .
+            '     , ' . $livro .
+            '     , ' . $data_inicio .
+            '     , ' . $data_fim .
+            '     , ' . $classificacao .
             /*TODO-2: Adicione cada variavel a consulta abaixo */
-            '  FROM livro';
+            '  FROM leitura';
 
 
         $resultado = mysqli_query($conexao, $sql);
@@ -52,13 +50,12 @@
         $cabecalho =
             '<table>' .
             '    <tr>' .
-            '        <th>' . 'ID' . '</th>' .
-            '        <th>' . 'Nome' . '</th>' .
+            '        <th>' . 'Leitor' . '</th>' .
+            '        <th>' . 'Livro' . '</th>' .
             /* TODO-3: Adicione as variaveis ao cabeçalho da tabela */
-            '        <th>' . 'Edição' . '</th>' .
-            '        <th>' . 'Data da edição' . '</th>' .
-            '        <th>' . 'Categoria' . '</th>' .
-            '        <th>' . 'ID do autor' . '</th>' .
+            '        <th>' . 'Início da leitura' . '</th>' .
+            '        <th>' . 'Fim da leitura' . '</th>' .
+            '        <th>' . 'Classificação do livro' . '</th>' .
             '    </tr>';
 
         echo $cabecalho;
@@ -68,13 +65,12 @@
             while ($registro = mysqli_fetch_assoc($resultado)) {
                 echo '<tr>';
 
-                echo '<td>' . $registro[$id] . '</td>' .
-                    '<td>' . $registro[$nome] . '</td>' .
+                echo '<td>' . $registro[$leitor] . '</td>' .
+                    '<td>' . $registro[$livro] . '</td>' .
                     /* TODO-4: Adicione a tabela os novos registros. */
-                    '<td>' . $registro[$edicao] . '</td>'.
-                    '<td>' . $registro[$data_edicao] . '</td>'.
-                    '<td>' . $registro[$categoria] . '</td>'.
-                    '<td>' . $registro[$id_autor] . '</td>';
+                    '<td>' . $registro[$data_inicio] . '</td>' . 
+                    '<td>' . $registro[$data_fim] . '</td>' . 
+                    '<td>' . $registro[$classificacao] . '</td>';
                 echo '</tr>';
             }
             echo '</table>';
