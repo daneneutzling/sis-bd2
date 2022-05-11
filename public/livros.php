@@ -21,23 +21,21 @@
 
         $conexao = RetornaConexao();
 
-        $id = 'id';
         $nome = 'nome';
         $edicao = 'edicao';
         $data_edicao = 'data_edicao';
         $categoria = 'categoria';
-        $id_autor = 'id_autor';
+        $autor_id = 'autor_id';
 
         /*TODO-1: Adicione uma variavel para cada coluna */
 
 
         $sql =
-            'SELECT ' . $id .
-            '     , ' . $nome .
+            'SELECT ' . $nome .
             '     , ' . $edicao .
             '     , ' . $data_edicao.
             '     , ' . $categoria.
-            '     , ' . $id_autor.
+            '     , ' . $autor_id.
             /*TODO-2: Adicione cada variavel a consulta abaixo */
             '  FROM livro';
 
@@ -52,7 +50,6 @@
         $cabecalho =
             '<table>' .
             '    <tr>' .
-            '        <th>' . 'ID' . '</th>' .
             '        <th>' . 'Nome' . '</th>' .
             /* TODO-3: Adicione as variaveis ao cabeçalho da tabela */
             '        <th>' . 'Edição' . '</th>' .
@@ -68,13 +65,12 @@
             while ($registro = mysqli_fetch_assoc($resultado)) {
                 echo '<tr>';
 
-                echo '<td>' . $registro[$id] . '</td>' .
-                    '<td>' . $registro[$nome] . '</td>' .
+                echo '<td>' . $registro[$nome] . '</td>' .
                     /* TODO-4: Adicione a tabela os novos registros. */
                     '<td>' . $registro[$edicao] . '</td>'.
                     '<td>' . $registro[$data_edicao] . '</td>'.
                     '<td>' . $registro[$categoria] . '</td>'.
-                    '<td>' . $registro[$id_autor] . '</td>';
+                    '<td>' . $registro[$autor_id] . '</td>';
                 echo '</tr>';
             }
             echo '</table>';

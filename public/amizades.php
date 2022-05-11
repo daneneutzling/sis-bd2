@@ -21,15 +21,15 @@
 
         $conexao = RetornaConexao();
 
-        $leitor_princ = 'leitor_princ';
-        $amigo = 'amigo';
+        $leitor_id = 'leitor_id';
+        $amigo_leitor_id = 'amigo_leitor_id';
 
         /*TODO-1: Adicione uma variavel para cada coluna */
 
 
         $sql =
-            'SELECT ' . $leitor_princ .
-            '     , ' . $amigo .
+            'SELECT ' . $leitor_id .
+            '     , ' . $amigo_leitor_id .
             /*TODO-2: Adicione cada variavel a consulta abaixo */
             '  FROM amizade';
 
@@ -56,8 +56,8 @@
             while ($registro = mysqli_fetch_assoc($resultado)) {
                 echo '<tr>';
 
-                echo '<td>' . $registro[$leitor_princ] . '</td>' .
-                    '<td>' . $registro[$amigo] . '</td>' ;
+                echo '<td>' . $registro[$leitor_id] . '</td>' .
+                    '<td>' . $registro[$amigo_leitor_id] . '</td>' ;
                     /* TODO-4: Adicione a tabela os novos registros. */
                 echo '</tr>';
             }

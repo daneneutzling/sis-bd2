@@ -21,8 +21,8 @@
 
         $conexao = RetornaConexao();
 
-        $leitor = 'leitor';
-        $livro = 'livro';
+        $leitor_id = 'leitor_id';
+        $livro_id = 'livro_id';
         $data_inicio = 'data_inicio';
         $data_fim = 'data_fim';
         $classificacao = 'classificacao';
@@ -31,8 +31,8 @@
 
 
         $sql =
-            'SELECT ' . $leitor .
-            '     , ' . $livro .
+            'SELECT ' . $leitor_id .
+            '     , ' . $livro_id .
             '     , ' . $data_inicio .
             '     , ' . $data_fim .
             '     , ' . $classificacao .
@@ -65,8 +65,8 @@
             while ($registro = mysqli_fetch_assoc($resultado)) {
                 echo '<tr>';
 
-                echo '<td>' . $registro[$leitor] . '</td>' .
-                    '<td>' . $registro[$livro] . '</td>' .
+                echo '<td>' . $registro[$leitor_id] . '</td>' .
+                    '<td>' . $registro[$livro_id] . '</td>' .
                     /* TODO-4: Adicione a tabela os novos registros. */
                     '<td>' . $registro[$data_inicio] . '</td>' . 
                     '<td>' . $registro[$data_fim] . '</td>' . 
