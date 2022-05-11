@@ -21,18 +21,16 @@
 
         $conexao = RetornaConexao();
 
-        $cpf = 'cpf';
-        $nome = 'nome';
-        $nascimento = 'nascimento';
+        //variável php = 'coluna_do_banco'
+        $cpf = 'leitor_cpf';
+        $nome = 'leitor_nome';
+        $nascimento = 'leitor_nascimento';
 
-        /*TODO-1: Adicione uma variavel para cada coluna */
-
-
+        //variável php (sql) = 'SELECT do banco' OU recebe as variaveis de acordo com as colunas do banco
         $sql =
             'SELECT ' . $cpf .
             '     , ' . $nome .
             '     , ' . $nascimento .
-            /*TODO-2: Adicione cada variavel a consulta abaixo */
             '  FROM leitor';
 
 
@@ -42,13 +40,12 @@
         }
 
 
-
+        //variáveis ao cabeçalho da tela, de acordo com as variáveis das colunas do banco
         $cabecalho =
             '<table>' .
             '    <tr>' .
             '        <th>' . 'CPF' . '</th>' .
             '        <th>' . 'Nome' . '</th>' .
-            /* TODO-3: Adicione as variaveis ao cabeçalho da tabela */
             '        <th>' . 'Nascimento' . '</th>' .
             '    </tr>';
 
@@ -59,9 +56,9 @@
             while ($registro = mysqli_fetch_assoc($resultado)) {
                 echo '<tr>';
 
+                //adicionar as tabelas com os registro[variaveis php]
                 echo '<td>' . $registro[$cpf] . '</td>' .
                     '<td>' . $registro[$nome] . '</td>' .
-                    /* TODO-4: Adicione a tabela os novos registros. */
                     '<td>' . $registro[$nascimento] . '</td>';
                 echo '</tr>';
             }

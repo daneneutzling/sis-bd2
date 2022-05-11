@@ -21,23 +21,18 @@
 
         $conexao = RetornaConexao();
 
-        $nome = 'nome';
-        $edicao = 'edicao';
-        $data_edicao = 'data_edicao';
-        $categoria = 'categoria';
-        $autor_id = 'autor_id';
+        //variável php = 'coluna_do_banco'
+        $nome = 'livro_nome';
+        $edicao = 'livro_edicao';
+        $data_edicao = 'livro_data_edicao';
+        $categoria = 'livro_categoria';
+        $autor = 'autor_nome';
 
-        /*TODO-1: Adicione uma variavel para cada coluna */
-
-
-        $sql =
-            'SELECT ' . $nome .
-            '     , ' . $edicao .
-            '     , ' . $data_edicao.
-            '     , ' . $categoria.
-            '     , ' . $autor_id.
-            /*TODO-2: Adicione cada variavel a consulta abaixo */
-            '  FROM livro';
+        //variável php (sql) = 'SELECT do banco' OU recebe as variaveis de acordo com as colunas do banco
+        $sql = ' SELECT livro_nome, livro_edicao, livro_data_edicao, livro_categoria, autor.autor_nome
+                FROM livro
+                JOIN autor ON ( autor.autor_id = livro.livro_autor_id_fk );'
+                ;
 
 
         $resultado = mysqli_query($conexao, $sql);
@@ -45,17 +40,15 @@
             echo mysqli_error($conexao);
         }
 
-
-
+        //variáveis ao cabeçalho da tela, de acordo com as variáveis das colunas do banco
         $cabecalho =
             '<table>' .
             '    <tr>' .
             '        <th>' . 'Nome' . '</th>' .
-            /* TODO-3: Adicione as variaveis ao cabeçalho da tabela */
             '        <th>' . 'Edição' . '</th>' .
             '        <th>' . 'Data da edição' . '</th>' .
             '        <th>' . 'Categoria' . '</th>' .
-            '        <th>' . 'ID do autor' . '</th>' .
+            '        <th>' . 'Autor' . '</th>' .
             '    </tr>';
 
         echo $cabecalho;
@@ -65,12 +58,12 @@
             while ($registro = mysqli_fetch_assoc($resultado)) {
                 echo '<tr>';
 
+                //adicionar as tabelas com os registro[variaveis php]
                 echo '<td>' . $registro[$nome] . '</td>' .
-                    /* TODO-4: Adicione a tabela os novos registros. */
                     '<td>' . $registro[$edicao] . '</td>'.
                     '<td>' . $registro[$data_edicao] . '</td>'.
                     '<td>' . $registro[$categoria] . '</td>'.
-                    '<td>' . $registro[$autor_id] . '</td>';
+                    '<td>' . $registro[$autor] . '</td>';
                 echo '</tr>';
             }
             echo '</table>';

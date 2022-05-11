@@ -21,18 +21,16 @@
 
         $conexao = RetornaConexao();
 
-        $nome = 'nome';
-        $nascimento = 'nascimento';
-        $nacionalidade = 'nacionalidade';
+        //variável php = 'coluna_do_banco'
+        $nome = 'autor_nome';
+        $nascimento = 'autor_nascimento';
+        $nacionalidade = 'autor_nacionalidade';
 
-        /*TODO-1: Adicione uma variavel para cada coluna */
-
-
+        //variável php (sql) = 'SELECT do banco' OU recebe as variaveis de acordo com as colunas do banco
         $sql =
             'SELECT ' . $nome .
             '     , ' . $nascimento .
             '     , ' . $nacionalidade .
-            /*TODO-2: Adicione cada variavel a consulta abaixo */
             '  FROM autor';
 
 
@@ -42,12 +40,11 @@
         }
 
 
-
+        //variáveis ao cabeçalho da tela, de acordo com as variáveis das colunas do banco
         $cabecalho =
             '<table>' .
             '    <tr>' .
             '        <th>' . 'Nome' . '</th>' .
-            /* TODO-3: Adicione as variaveis ao cabeçalho da tabela */
             '        <th>' . 'Nascimento' . '</th>' .
             '        <th>' . 'Nacionalidade' . '</th>' .
             '    </tr>';
@@ -59,8 +56,8 @@
             while ($registro = mysqli_fetch_assoc($resultado)) {
                 echo '<tr>';
 
+                //adicionar as tabelas com os registro[variaveis php]
                 echo '<td>' . $registro[$nome] . '</td>' .
-                    /* TODO-4: Adicione a tabela os novos registros. */
                     '<td>' . $registro[$nascimento] . '</td>' . 
                     '<td>' . $registro[$nacionalidade] . '</td>';
                 echo '</tr>';

@@ -21,16 +21,14 @@
 
         $conexao = RetornaConexao();
 
-        $leitor_id = 'leitor_id';
-        $amigo_leitor_id = 'amigo_leitor_id';
+        //variável php = 'coluna_do_banco'
+        $leitor = 'amizade_leitor_id_fk';
+        $amigo = 'amizade_leitor_amigo_id_fk';
 
-        /*TODO-1: Adicione uma variavel para cada coluna */
-
-
+        //variável php (sql) = 'SELECT do banco' OU recebe as variaveis de acordo com as colunas do banco
         $sql =
-            'SELECT ' . $leitor_id .
-            '     , ' . $amigo_leitor_id .
-            /*TODO-2: Adicione cada variavel a consulta abaixo */
+            'SELECT ' . $leitor .
+            '     , ' . $amigo .
             '  FROM amizade';
 
 
@@ -40,13 +38,12 @@
         }
 
 
-
+        //variáveis ao cabeçalho da tela, de acordo com as variáveis das colunas do banco
         $cabecalho =
             '<table>' .
             '    <tr>' .
             '        <th>' . 'Leitor' . '</th>' .
             '        <th>' . 'Amigo' . '</th>' .
-            /* TODO-3: Adicione as variaveis ao cabeçalho da tabela */
             '    </tr>';
 
         echo $cabecalho;
@@ -56,9 +53,9 @@
             while ($registro = mysqli_fetch_assoc($resultado)) {
                 echo '<tr>';
 
-                echo '<td>' . $registro[$leitor_id] . '</td>' .
-                    '<td>' . $registro[$amigo_leitor_id] . '</td>' ;
-                    /* TODO-4: Adicione a tabela os novos registros. */
+                //adicionar as tabelas com os registro[variaveis php]
+                echo '<td>' . $registro[$leitor] . '</td>' .
+                    '<td>' . $registro[$amigo] . '</td>' ;
                 echo '</tr>';
             }
             echo '</table>';
