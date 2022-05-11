@@ -2,20 +2,70 @@
 
 <head>
     <style>
-        .content {
-            max-width: 800px;
+        .body {
+            max-width: 1000px;
             margin: auto;
         }
+
+        h1 {
+            text-align: center;
+        }
+
+        h2 {
+            margin-left: 100px;
+            padding-left: 50px;
+
+        }
+
+        .content {
+            margin-top: 20px;
+            margin-left: 200px;
+            margin-right: 150px;
+        }
+    
+        .leitor{
+            padding-right: 30px;
+            padding-bottom: 15px;
+        }
+
+        .livro {
+            padding-right: 20px;
+            padding-bottom: 15px;
+            max-width: 400px;
+        }
+
+        .inicio_leitura {
+            text-align: center;
+            padding-right: 20px;
+            padding-bottom: 15px;
+
+        }
+
+        .fim_leitura {
+            text-align: center;
+            padding-right: 20px;
+            padding-bottom: 15px;
+
+        }
+
+        .classificacao {
+            text-align: center;
+            padding-bottom: 15px;
+
+        }
+
     </style>
 </head>
 
 <html>
 
 <body>
-    <div class="content">
-        <h1>Biblioteca</h1>
+    <h1>Biblioteca</h1>
 
-        <h2>Leituras</h2>
+    <h2>Leituras realizadas</h2>
+
+    <div class="content">
+        
         <?php
         require 'mysql_server.php';
 
@@ -45,11 +95,11 @@
         $cabecalho =
             '<table>' .
             '    <tr>' .
-            '        <th>' . 'Leitor' . '</th>' .
-            '        <th>' . 'Livro' . '</th>' .
-            '        <th>' . 'Início da leitura' . '</th>' .
-            '        <th>' . 'Fim da leitura' . '</th>' .
-            '        <th>' . 'Classificação do livro' . '</th>' .
+            '        <th class="leitor">' . 'Leitor' . '</th>' .
+            '        <th class="livro">' . 'Livro' . '</th>' .
+            '        <th class="inicio_leitura">' . 'Início da leitura' . '</th>' .
+            '        <th class="fim_leitura">' . 'Fim da leitura' . '</th>' .
+            '        <th class="classificacao">' . 'Classificação do livro' . '</th>' .
             '    </tr>';
 
         echo $cabecalho;
@@ -60,11 +110,11 @@
                 echo '<tr>';
 
                 //adicionar as tabelas com os registro[variaveis php]
-                echo '<td>' . $registro[$leitor] . '</td>' .
-                    '<td>' . $registro[$livro] . '</td>' .
-                    '<td>' . $registro[$data_inicio] . '</td>' . 
-                    '<td>' . $registro[$data_fim] . '</td>' . 
-                    '<td>' . $registro[$classificacao] . '</td>';
+                echo '<td class="leitor">' . $registro[$leitor] . '</td>' .
+                    '<td class="livro">' . $registro[$livro] . '</td>' .
+                    '<td class="inicio_leitura">' . $registro[$data_inicio] . '</td>' . 
+                    '<td class="fim_leitura">' . $registro[$data_fim] . '</td>' . 
+                    '<td class="classificacao">' . $registro[$classificacao] . '</td>';
                 echo '</tr>';
             }
             echo '</table>';

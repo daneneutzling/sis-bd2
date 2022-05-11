@@ -2,9 +2,50 @@
 
 <head>
     <style>
-        .content {
-            max-width: 800px;
+        body {
+            max-width: 1000px;
             margin: auto;
+        }
+
+        h1 {
+            text-align: center;
+        }
+
+        h2 {
+            padding-left: 50px;
+        }
+
+        .content {
+            margin-top: 20px;
+            margin-left: 80px;
+        }
+    
+        .titulo{
+            padding-right: 20px;
+            max-width: 450px;
+            padding-bottom: 15px;
+        }
+
+        .edicao {
+            padding-right: 20px;
+            padding-bottom: 15px;
+            text-align: center;
+        }
+
+        .data_edicao {
+            padding-right: 20px;
+            padding-bottom: 15px;
+            text-align: center;
+        }
+
+        .categoria {
+            padding-right: 30px;
+            padding-bottom: 15px;
+            text-align: center;
+        }
+
+        .autor {
+            padding-bottom: 15px;
         }
     </style>
 </head>
@@ -12,10 +53,12 @@
 <html>
 
 <body>
-    <div class="content">
-        <h1>Biblioteca</h1>
+    <h1>Biblioteca</h1>
 
-        <h2>Livros</h2>
+    <h2>Livros</h2>
+
+    <div class="content">
+        
         <?php
         require 'mysql_server.php';
 
@@ -31,7 +74,8 @@
         //variável php (sql) = 'SELECT do banco' OU recebe as variaveis de acordo com as colunas do banco
         $sql = ' SELECT livro_nome, livro_edicao, livro_data_edicao, livro_categoria, autor.autor_nome
                 FROM livro
-                JOIN autor ON ( autor.autor_id = livro.livro_autor_id_fk );'
+                JOIN autor ON ( autor.autor_id = livro.livro_autor_id_fk )
+                ORDER BY livro.livro_nome;'
                 ;
 
 
@@ -44,11 +88,11 @@
         $cabecalho =
             '<table>' .
             '    <tr>' .
-            '        <th>' . 'Nome' . '</th>' .
-            '        <th>' . 'Edição' . '</th>' .
-            '        <th>' . 'Data da edição' . '</th>' .
-            '        <th>' . 'Categoria' . '</th>' .
-            '        <th>' . 'Autor' . '</th>' .
+            '        <th class="titulo">' . 'Título' . '</th>' .
+            '        <th class="edicao">' . 'Edição' . '</th>' .
+            '        <th class="data_edicao">' . 'Data da edição' . '</th>' .
+            '        <th class="categoria">' . 'Categoria' . '</th>' .
+            '        <th class="autor">' . 'Autor' . '</th>' .
             '    </tr>';
 
         echo $cabecalho;
@@ -59,11 +103,11 @@
                 echo '<tr>';
 
                 //adicionar as tabelas com os registro[variaveis php]
-                echo '<td>' . $registro[$nome] . '</td>' .
-                    '<td>' . $registro[$edicao] . '</td>'.
-                    '<td>' . $registro[$data_edicao] . '</td>'.
-                    '<td>' . $registro[$categoria] . '</td>'.
-                    '<td>' . $registro[$autor] . '</td>';
+                echo '<td class="titulo">' . $registro[$nome] . '</td>' .
+                    '<td class="edicao">' . $registro[$edicao] . '</td>'.
+                    '<td class="data_edicao">' . $registro[$data_edicao] . '</td>'.
+                    '<td class="categoria">' . $registro[$categoria] . '</td>'.
+                    '<td class="autor">' . $registro[$autor] . '</td>';
                 echo '</tr>';
             }
             echo '</table>';

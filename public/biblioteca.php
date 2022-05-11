@@ -2,9 +2,35 @@
 
 <head>
     <style>
-        .content {
-            max-width: 800px;
+        body {
+            max-width: 1000px;
             margin: auto;
+        }
+
+        h1 {
+            text-align: center;
+        }
+
+        h2 {
+            margin-left: 50px;
+            padding-left: 50px;
+        }
+
+        .content {
+            padding: 0px;
+            margin-top: 20px;
+            margin-left: 200px;
+        }
+    
+        .leitor{
+            padding-right: 20px;
+            max-width: 450px;
+            padding-bottom: 15px;
+        }
+
+        .livro {
+            padding-bottom: 15px;
+            text-align: center;
         }
     </style>
 </head>
@@ -12,8 +38,11 @@
 <html>
 
 <body>
+    <h1>Biblioteca</h1>
+    <h2>Bibliotecas individuais</h2>
+    
     <div class="content">
-        <h1>Biblioteca</h1>
+        
 
         <?php
         require 'mysql_server.php';
@@ -22,13 +51,14 @@
 
         //variável php = 'coluna_do_banco'
         $leitor = 'leitor_nome';
-        $livro = 'livro_nome';
+        $livros = 'quantidade';
 
         //variável php (sql) = 'SELECT do banco' OU recebe as variaveis de acordo com as colunas do banco
-        $sql = 'SELECT leitor.leitor_nome, livro.livro_nome
+        $sql = 'SELECT  leitor.leitor_nome, COUNT(biblioteca_livro_id_fk) AS quantidade
             FROM biblioteca
-            JOIN leitor ON ( biblioteca.biblioteca_leitor_id_fk = leitor.leitor_id )
-            JOIN livro ON ( biblioteca.biblioteca_livro_id_fk = livro.livro_id );'
+            RIGHT JOIN leitor ON ( biblioteca.biblioteca_leitor_id_fk = leitor.leitor_id )
+            GROUP BY leitor.leitor_nome
+            ORDER BY leitor.leitor_nome;'
             ;
 
 
@@ -42,8 +72,8 @@
         $cabecalho =
             '<table>' .
             '    <tr>' .
-            '        <th>' . 'Leitor' . '</th>' .
-            '        <th>' . 'Livros' . '</th>' .
+            '        <th class="leitor">' . 'Leitor' . '</th>' .
+            '        <th class="livro">' . 'Livros' . '</th>' .
             '    </tr>';
 
         echo $cabecalho;
@@ -54,8 +84,8 @@
                 echo '<tr>';
 
                 //adicionar as tabelas com os registro[variaveis php]
-                echo '<td>' . $registro[$leitor] . '</td>' .
-                    '<td>' . $registro[$livro] . '</td>';
+                echo '<td class="leitor">' . $registro[$leitor] . '</td>' .
+                    '<td class="livro">' . $registro[$livros] . '</td>';
                 echo '</tr>';
             }
             echo '</table>';

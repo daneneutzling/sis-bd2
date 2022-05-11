@@ -2,9 +2,39 @@
 
 <head>
     <style>
-        .content {
+        body {
             max-width: 800px;
             margin: auto;
+        }
+
+        h1 {
+            text-align: center;
+        }
+
+        h2 {
+            padding-left: 50px;
+        }
+
+        .content {
+            margin-top: 20px;
+            margin-left: 80px;
+            
+        }
+    
+        .nome{
+            padding-right: 80px;
+            padding-bottom: 10px;
+        }
+
+        .nascimento {
+            padding-bottom: 10px;
+            text-align: center;
+        }
+
+        .nacionalidade{
+            padding-left: 80px;
+            padding-bottom: 10px;
+            text-align: center;
         }
     </style>
 </head>
@@ -12,10 +42,11 @@
 <html>
 
 <body>
-    <div class="content">
-        <h1>Biblioteca</h1>
+    <h1>Biblioteca</h1>
 
-        <h2>Autores</h2>
+    <h2>Autores</h2>
+    <div class="content">
+        
         <?php
         require 'mysql_server.php';
 
@@ -27,12 +58,17 @@
         $nacionalidade = 'autor_nacionalidade';
 
         //variável php (sql) = 'SELECT do banco' OU recebe as variaveis de acordo com as colunas do banco
-        $sql =
+        $sql = 'SELECT  autor_nome, autor_nascimento, autor_nacionalidade
+        FROM autor
+        ORDER BY autor_nome;'
+        ;
+
+        /*
             'SELECT ' . $nome .
             '     , ' . $nascimento .
             '     , ' . $nacionalidade .
             '  FROM autor';
-
+        */
 
         $resultado = mysqli_query($conexao, $sql);
         if (!$resultado) {
@@ -44,9 +80,9 @@
         $cabecalho =
             '<table>' .
             '    <tr>' .
-            '        <th>' . 'Nome' . '</th>' .
-            '        <th>' . 'Nascimento' . '</th>' .
-            '        <th>' . 'Nacionalidade' . '</th>' .
+            '        <th class="nome">' . 'Nome' . '</th>' .
+            '        <th class="nascimento">' . 'Nascimento' . '</th>' .
+            '        <th class="nacionalidade">' . 'Nacionalidade' . '</th>' .
             '    </tr>';
 
         echo $cabecalho;
@@ -57,9 +93,9 @@
                 echo '<tr>';
 
                 //adicionar as tabelas com os registro[variaveis php]
-                echo '<td>' . $registro[$nome] . '</td>' .
-                    '<td>' . $registro[$nascimento] . '</td>' . 
-                    '<td>' . $registro[$nacionalidade] . '</td>';
+                echo '<td class="nome">' . $registro[$nome] . '</td>' .
+                    '<td class="nascimento">' . $registro[$nascimento] . '</td>' . 
+                    '<td class="nacionalidade">' . $registro[$nacionalidade] . '</td>';
                 echo '</tr>';
             }
             echo '</table>';
