@@ -45,13 +45,15 @@
         $conexao = RetornaConexao();
 
         //variável php = 'coluna_do_banco'
-        $leitor = 'amizade_leitor_id_fk';
-        $amigo = 'amizade_leitor_amigo_id_fk';
+        $leitor = 'leitor_nome';
+        $amigo = 'amigo';
 
         //variável php (sql) = 'SELECT do banco' OU recebe as variaveis de acordo com as colunas do banco
-        $sql = 'SELECT amizade_leitor_id_fk, amizade_leitor_amigo_id_fk
+        $sql = 'SELECT leitor.leitor_nome, l2.leitor_nome AS amigo
             FROM amizade
-            ORDER BY amizade_leitor_id_fk;'
+            JOIN leitor ON ( amizade.amizade_leitor_id_fk = leitor.leitor_id )
+            JOIN leitor l2 ON ( l2.leitor_id = amizade.amizade_leitor_amigo_id_fk )
+            ORDER BY leitor.leitor_nome;'
             ;
 
             /*
